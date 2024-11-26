@@ -24,6 +24,8 @@ abstract class DofusBotTask<T> {
     fun run(parentLogItem: LogItem, gameInfo: GameInfo): T {
         val logItem = gameInfo.logger.addSubLog(onStarted(), parentLogItem)
         try {
+            println("DofusBotTask")
+            println("CURRENT MAP ${gameInfo}")
             val result = execute(logItem, gameInfo)
             gameInfo.logger.closeLog(onSucceeded(result), logItem, shouldClearSubLogItems(result))
             return result

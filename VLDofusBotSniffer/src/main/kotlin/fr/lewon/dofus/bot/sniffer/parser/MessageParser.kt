@@ -46,9 +46,10 @@ abstract class MessageParser(private val packetOrigin: PacketOrigin, private val
                 println("Ordered packets content : $orderedRawData")
             }
         }
-        if (packets.size == 20) {
+        // TODO: Descomentar
+        /*if (packets.size == 20) {
             println("${getLogPrefix()} : Large packet buffer, character might have crashed. If a character is stuck, please reload sniffer.")
-        }
+        }*/
     }
 
     private fun getLogPrefix(): String =
@@ -65,6 +66,8 @@ abstract class MessageParser(private val packetOrigin: PacketOrigin, private val
 
     private fun processMessagePremise(messagePremise: DofusMessagePremise) {
         val premiseStr = "[${packetOrigin.name}] ${messagePremise.eventClass.simpleName}:${messagePremise.eventId}"
+        println("processMessagePremise")
+        println(premiseStr)
         val message = deserializeMessage(messagePremise)
         addMessageToStore(message)
         state.logger.log(premiseStr, description = objectMapper.writeValueAsString(message))

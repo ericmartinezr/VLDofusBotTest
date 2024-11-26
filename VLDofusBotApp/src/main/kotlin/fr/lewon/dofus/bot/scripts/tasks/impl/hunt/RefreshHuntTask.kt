@@ -10,9 +10,10 @@ import fr.lewon.dofus.bot.util.network.info.GameInfo
 class RefreshHuntTask : BooleanDofusBotTask() {
 
     override fun doExecute(logItem: LogItem, gameInfo: GameInfo): Boolean {
-        if (!ReachHavenBagTask().run(logItem, gameInfo)) {
+        // TODO: Solo activar si estoy abonado
+        /*if (!ReachHavenBagTask().run(logItem, gameInfo)) {
             return false
-        }
+        }*/
         if (TreasureHuntUtil.isSearchStep(gameInfo)) {
             val lastNonTickedIndex = TreasureHuntUtil.getLastNonTickedFlagIndex(gameInfo)
             if (lastNonTickedIndex != null) {
@@ -25,7 +26,9 @@ class RefreshHuntTask : BooleanDofusBotTask() {
         } else if (TreasureHuntUtil.isFightStep(gameInfo)) {
             TreasureHuntUtil.clickFightForUpdate(gameInfo)
         }
-        return LeaveHavenBagTask().run(logItem, gameInfo)
+        return true
+        // TODO: Solo activar si estoy abonado
+        //return LeaveHavenBagTask().run(logItem, gameInfo)
     }
 
     override fun onStarted(): String {

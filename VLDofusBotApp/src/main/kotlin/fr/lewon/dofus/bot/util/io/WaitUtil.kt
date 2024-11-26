@@ -5,7 +5,7 @@ import fr.lewon.dofus.bot.util.network.info.GameInfo
 
 object WaitUtil {
 
-    const val DEFAULT_TIMEOUT_MILLIS = 25 * 1000
+    const val DEFAULT_TIMEOUT_MILLIS = 40 * 1000
 
     fun sleep(time: Long) {
         Thread.sleep(time)

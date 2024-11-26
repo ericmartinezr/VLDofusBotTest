@@ -35,7 +35,8 @@ object ExploreAllZaapsScriptBuilder : DofusBotScriptBuilder("Explore all zaaps")
         val registeredZaaps = OpenZaapInterfaceTask().run(logItem, gameInfo)
         val closeZaapInterfaceButtonBounds = UiUtil.getContainerBounds(DofusUIElement.ZAAP_SELECTION, "btn_close")
         MouseUtil.leftClick(gameInfo, closeZaapInterfaceButtonBounds.getCenter())
-        LeaveHavenBagTask().run(logItem, gameInfo)
+        // TODO: Solo activar si estoy abonado
+        //LeaveHavenBagTask().run(logItem, gameInfo)
         val zaaps = TravelUtil.getAllZaapMaps()
             .filter { shouldExploreZaap(gameInfo, it, registeredZaaps) }
             .sortedBy { it.coordinates.distanceTo(gameInfo.currentMap.coordinates) }

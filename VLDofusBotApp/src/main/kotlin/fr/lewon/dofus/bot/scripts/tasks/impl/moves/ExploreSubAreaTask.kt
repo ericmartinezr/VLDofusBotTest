@@ -42,6 +42,8 @@ class ExploreSubAreaTask(
             error("Nothing to explore in this area")
         }
         var toExploreMaps = initialExploreMapsList.toMutableList()
+        println("ExploreSubAreaTask")
+        println("GAME INFO ${gameInfo}")
         if (!ReachMapTask(toExploreMaps).run(logItem, gameInfo)) {
             error("Couldn't reach area")
         }

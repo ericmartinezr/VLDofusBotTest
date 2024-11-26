@@ -11,6 +11,8 @@ open class MapInformationsRequestMessage : NetworkMessage() {
 	override fun deserialize(stream: ByteArrayReader) {
 		super.deserialize(stream)
 		mapId = stream.readDouble().toDouble()
+		println("MapInformationsRequestMessage")
+		println("Map id $mapId")
 	}
 	override fun getNetworkMessageId(): Int = 2408
 }

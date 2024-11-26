@@ -16,6 +16,8 @@ abstract class DofusBotScriptBuilder(val name: String, val isDev: Boolean = fals
     fun buildScript(): DofusBotScript {
         return object : DofusBotScript(this) {
             override fun execute(logItem: LogItem, gameInfo: GameInfo, scriptValues: ScriptValues) {
+                println("DofusBotScriptBuilder")
+                println("GAME INFO ${gameInfo}")
                 doExecuteScript(logItem, gameInfo, scriptValues)
             }
         }

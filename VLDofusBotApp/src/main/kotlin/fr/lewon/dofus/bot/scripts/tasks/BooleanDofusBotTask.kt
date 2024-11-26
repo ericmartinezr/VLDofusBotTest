@@ -14,6 +14,8 @@ abstract class BooleanDofusBotTask : DofusBotTask<Boolean>() {
     override fun execute(logItem: LogItem, gameInfo: GameInfo): Boolean {
         error = null
         return try {
+            println("BooleanDofusBotTask")
+            println("GAME INFO ${gameInfo}")
             doExecute(logItem, gameInfo)
         } catch (e: InterruptedException) {
             throw e

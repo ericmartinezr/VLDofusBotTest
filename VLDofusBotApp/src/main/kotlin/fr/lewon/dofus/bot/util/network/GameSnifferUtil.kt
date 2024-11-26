@@ -62,12 +62,15 @@ object GameSnifferUtil : ListenableByCharacter<GameSnifferListener>() {
     }
 
     fun getGameInfoByConnection(connection: DofusConnection): GameInfo {
+        println("GameSnifferUtil- getGameInfoByConnection")
+        println("Connection ${connection}")
+        println(connectionsByGameInfo.entries)
+        //connectionsByGameInfo.entries.forEach { conn -> println("Current map ${conn.key.currentMap}")}
         return lock.executeSyncOperation {
             connectionsByGameInfo.entries.firstOrNull { it.value.contains(connection) }?.key
                 ?: error("There is no game info associated to connection : ${connection.pid}")
         }
     }
-
     fun getFirstConnection(character: DofusCharacter): DofusConnection? {
         return getConnections(character).firstOrNull()
     }

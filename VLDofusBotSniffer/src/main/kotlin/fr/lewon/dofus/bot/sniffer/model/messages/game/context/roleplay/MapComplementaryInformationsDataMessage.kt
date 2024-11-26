@@ -67,6 +67,9 @@ open class MapComplementaryInformationsDataMessage : NetworkMessage() {
 		hasAggressiveMonsters = stream.readBoolean()
 		fightStartPositions = FightStartingPositions()
 		fightStartPositions.deserialize(stream)
+		println("MapComplementaryInformationsDataMessage")
+		println("Sub area id: $subAreaId")
+		println("Map id: $mapId")
 	}
 	override fun getNetworkMessageId(): Int = 9792
 }

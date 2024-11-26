@@ -18,9 +18,11 @@ import fr.lewon.dofus.bot.util.ui.UiUtil
 class OpenZaapInterfaceTask : DofusBotTask<List<DofusMap>>() {
 
     override fun execute(logItem: LogItem, gameInfo: GameInfo): List<DofusMap> {
+       // TODO: Desactivar si no estoy abonado
+        /*
         if (!ReachHavenBagTask().run(logItem, gameInfo)) {
             error("Couldn't reach haven bag")
-        }
+        }*/
 
         val playerCellId = gameInfo.entityPositionsOnMapByEntityId[gameInfo.playerId]
             ?: error("Couldn't find player position")

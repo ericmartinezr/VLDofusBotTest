@@ -5,6 +5,7 @@ import fr.lewon.dofus.bot.gui.util.AppInfo
 import fr.lewon.dofus.bot.scripts.tasks.DofusBotTask
 import fr.lewon.dofus.bot.scripts.tasks.impl.hunt.RefreshHuntTask
 import fr.lewon.dofus.bot.scripts.tasks.impl.transport.LeaveHavenBagTask
+import fr.lewon.dofus.bot.scripts.tasks.impl.transport.ReachHavenBagTask
 import fr.lewon.dofus.bot.util.game.TreasureHuntUtil
 import fr.lewon.dofus.bot.util.network.info.GameInfo
 
@@ -15,9 +16,14 @@ class InitAllTask : DofusBotTask<Any?>() {
             if (!RefreshHuntTask().run(logItem, gameInfo)) {
                 error("Couldn't refresh hunt")
             }
-        } else if (!LeaveHavenBagTask().run(logItem, gameInfo)) {
-            error("Couldn't reach or leave haven bag")
         }
+        // TODO: Agregar un boton para determinar si estoy abonado o no
+        // TODO: Si estoy abonado puedo validar esto
+        /*else if (ReachHavenBagTask().run(logItem, gameInfo)) {
+            if(!LeaveHavenBagTask().run(logItem, gameInfo)) {
+                error("Couldn't reach or leave haven bag")
+            }
+        }*/
         return null
     }
 

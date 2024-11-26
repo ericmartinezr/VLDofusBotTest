@@ -104,11 +104,15 @@ object InitUIUtil {
     }
 
     private fun initEventStoreHandlers() {
+        println("initEventStoreHandlers")
         Reflections(VLDofusBotApp::class.java.packageName)
             .getSubTypesOf(IEventHandler::class.java)
             .filter { !it.kotlin.isAbstract }
             .mapNotNull { it.kotlin.objectInstance ?: it.getConstructor().newInstance() }
-            .forEach { EventStore.addEventHandler(it) }
+            .forEach {
+                println("Event handler $it")
+                EventStore.addEventHandler(it);
+            }
     }
 
     private fun initSniffer() {

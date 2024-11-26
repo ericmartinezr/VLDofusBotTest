@@ -21,6 +21,8 @@ abstract class AbstractMapComplementaryInformationsDataEventHandler<T : MapCompl
     override fun onEventReceived(socketResult: T, connection: DofusConnection) {
         val gameInfo = GameSnifferUtil.getGameInfoByConnection(connection)
         val map = MapManager.getDofusMap(socketResult.mapId)
+        println("AbstractMapComplementaryInformationsDataEventHandler")
+        println("Este es el mapa: ${map}")
         gameInfo.currentMap = map
         gameInfo.drhellerOnMap = socketResult.actors.firstOrNull { it is GameRolePlayTreasureHintInformations } != null
         gameInfo.dofusBoard.updateStartCells(socketResult.fightStartPositions.positionsForChallengers)

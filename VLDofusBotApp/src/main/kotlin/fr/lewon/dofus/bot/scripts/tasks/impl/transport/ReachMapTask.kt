@@ -13,9 +13,13 @@ import fr.lewon.dofus.bot.util.network.info.GameInfo
 open class ReachMapTask(private val destMaps: List<DofusMap>) : BooleanDofusBotTask() {
 
     override fun doExecute(logItem: LogItem, gameInfo: GameInfo): Boolean {
-        if (destMaps.contains(gameInfo.currentMap)) {
+        println("ReachMapTask")
+        println("GAME INFO ${gameInfo}")
+        // TODO: PRueba para ver si el bot funciona
+        // TODO: Hay que descomentar esto
+/*        if (destMaps.contains(gameInfo.currentMap)) {
             return true
-        }
+        }*/
 
         val allZaapMaps = TravelUtil.getAllZaapMaps()
         allZaapMaps.intersect(destMaps.toSet()).takeIf { it.isNotEmpty() }?.let {
@@ -33,15 +37,24 @@ open class ReachMapTask(private val destMaps: List<DofusMap>) : BooleanDofusBotT
             ?: error("No transition in path")
         val subLogItem = gameInfo.logger.addSubLog("Moving to map : (${destMap.posX}; ${destMap.posY}) ...", logItem)
         val fromMap = path.first().edge.from.mapId
+       // TODO: Descomentar cuando averigue que onda con los zaaps
+        /*
         val zaapOk = if (allZaapMapIds.contains(fromMap) && fromMap != gameInfo.currentMap.id) {
             ZaapTowardTask(MapManager.getDofusMap(fromMap)).run(subLogItem, gameInfo)
-        } else true
+        } else true*/
+        // TODO: Descomentar cuando avergieu que onda con los zaaps
+        /*
         return zaapOk && MoveTask(path).run(subLogItem, gameInfo).also {
+            gameInfo.logger.closeLog("OK", subLogItem, true)
+        }*/
+        return MoveTask(path).run(subLogItem, gameInfo).also {
             gameInfo.logger.closeLog("OK", subLogItem, true)
         }
     }
 
     private fun getCurrentVertex(gameInfo: GameInfo): Vertex? {
+        println("ReachMapTask - getCurrentVertex")
+        println("positions: ${gameInfo.entityPositionsOnMapByEntityId}")
         val playerCellId = gameInfo.entityPositionsOnMapByEntityId[gameInfo.playerId]
             ?: error("Couldn't find player cell id (player ID : ${gameInfo.playerId})")
         val cellData = gameInfo.completeCellDataByCellId[playerCellId]?.cellData

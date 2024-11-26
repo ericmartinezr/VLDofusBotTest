@@ -43,6 +43,8 @@ object ScriptRunner : ListenableByCharacter<ScriptRunnerListener>(), CharacterMa
         val thread = Thread {
             try {
                 val gameInfo = prepareScriptExecution(character, logItem)
+                println("ScriptRunner - runScript")
+                println("CURRENT MAP ${gameInfo}")
                 gameInfo.eventStore.clear()
                 val script = scriptBuilder.buildScript()
                 script.execute(logItem, gameInfo, scriptValues)
@@ -74,6 +76,8 @@ object ScriptRunner : ListenableByCharacter<ScriptRunnerListener>(), CharacterMa
         GameSnifferUtil.updateNetwork()
         val connection = GameSnifferUtil.getFirstConnection(currentCharacter) ?: error("Character must be logged in")
         val gameInfo = GameSnifferUtil.getGameInfoByConnection(connection)
+        println("ScriptRunner - prepareScriptExecution")
+        println("CURRENT MAP ${gameInfo}")
         JNAUtil.updateGameBounds(gameInfo)
 
         if (gameInfo.shouldInitBoard) {

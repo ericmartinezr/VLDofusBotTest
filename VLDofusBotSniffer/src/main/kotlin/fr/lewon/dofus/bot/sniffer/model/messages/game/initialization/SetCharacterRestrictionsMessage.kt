@@ -15,6 +15,8 @@ open class SetCharacterRestrictionsMessage : NetworkMessage() {
 		actorId = stream.readDouble().toDouble()
 		restrictions = ActorRestrictionsInformations()
 		restrictions.deserialize(stream)
+		println("SetCharacterRestrictionsMessage")
+		println("Actor id: $actorId")
 	}
 	override fun getNetworkMessageId(): Int = 1324
 }

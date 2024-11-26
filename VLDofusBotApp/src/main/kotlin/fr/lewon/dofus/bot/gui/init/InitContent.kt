@@ -19,7 +19,9 @@ fun InitContent() {
         modifier = Modifier.background(AppColors.VERY_DARK_BG_COLOR).fillMaxSize().padding(5.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp),
     ) {
+        println("InitContent")
         for (initTask in InitUIUtil.initTasks) {
+            println("Init task ${initTask}")
             initTaskLine(initTask)
             Divider(Modifier.fillMaxWidth(0.95f).align(Alignment.CenterHorizontally))
         }

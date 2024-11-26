@@ -149,22 +149,26 @@ object ExploreAreaScriptBuilder : DofusBotScriptBuilder("Explore area") {
             val subAreaParameterValue = scriptValues.getParamValue(subAreaParameter)
             SUB_AREA_BY_LABEL[subAreaParameterValue] ?: error("Sub area not found : $subAreaParameterValue")
         }
-        ExploreSubAreaTask(
-            subArea,
-            killEverything = scriptValues.getParamValue(killEverythingParameter).toBoolean(),
-            searchedMonsterName = scriptValues.getParamValue(searchedMonsterParameter),
-            stopWhenArchMonsterFound = scriptValues.getParamValue(stopWhenArchMonsterFoundParameter).toBoolean(),
-            stopWhenWantedMonsterFound = scriptValues.getParamValue(stopWhenQuestMonsterFoundParameter).toBoolean(),
-            runForever = scriptValues.getParamValue(runForeverParameter).toBoolean(),
-            explorationThresholdMinutes = scriptValues.getParamValue(ignoreMapsExploredRecentlyParameter).toInt(),
-            harvestResource = scriptValues.getParamValue(harvestParameter).toBoolean(),
-            harvestJob = if (harvestAllParameterValue) {
-                ""
-            } else {
-                scriptValues.getParamValue(harvestJobParameter)
-            }
+        if (subArea != null) {
+            println("ExploreAreaScriptBuilder")
+            println("GAME INFO ${gameInfo}")
+            ExploreSubAreaTask(
+                subArea,
+                killEverything = scriptValues.getParamValue(killEverythingParameter).toBoolean(),
+                searchedMonsterName = scriptValues.getParamValue(searchedMonsterParameter),
+                stopWhenArchMonsterFound = scriptValues.getParamValue(stopWhenArchMonsterFoundParameter).toBoolean(),
+                stopWhenWantedMonsterFound = scriptValues.getParamValue(stopWhenQuestMonsterFoundParameter).toBoolean(),
+                runForever = scriptValues.getParamValue(runForeverParameter).toBoolean(),
+                explorationThresholdMinutes = scriptValues.getParamValue(ignoreMapsExploredRecentlyParameter).toInt(),
+                harvestResource = scriptValues.getParamValue(harvestParameter).toBoolean(),
+                harvestJob = if (harvestAllParameterValue) {
+                    ""
+                } else {
+                    scriptValues.getParamValue(harvestJobParameter)
+                }
 
-        ).run(logItem, gameInfo)
+            ).run(logItem, gameInfo)
+        }
     }
 
 }
