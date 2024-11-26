@@ -36,7 +36,7 @@ class ExploreSubAreaTask(
 
     override fun doExecute(logItem: LogItem, gameInfo: GameInfo): Boolean {
         val initialExploreMapsList = MapManager.getDofusMaps(subArea)
-            .filter { it.worldMap != null || SUB_AREA_ID_FULLY_ALLOWED.contains(it.subArea.id) }
+            .filter { it.worldMap != null || it.subArea?.let { it1 -> SUB_AREA_ID_FULLY_ALLOWED.contains(it1.id) } == true }
             .filter { explorationThresholdMinutes <= 0 || getMinutesSinceLastExploration(it.id) > explorationThresholdMinutes }
         if (initialExploreMapsList.isEmpty()) {
             error("Nothing to explore in this area")

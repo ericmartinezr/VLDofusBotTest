@@ -7,12 +7,16 @@ import fr.lewon.dofus.bot.core.model.maps.DofusSubArea
 
 object HiddenWorldMapHelper : WorldMapHelper() {
 
-    override fun isMapValid(map: DofusMap): Boolean =
-        isDisplayedOnMap(map.subArea) && map.canFightMonster && map.canSpawnMonsters
+    override fun isMapValid(map: DofusMap): Boolean {
+        if (map.subArea == null) {
+            return false
+        }
+        return isDisplayedOnMap(map.subArea!!) && map.canFightMonster && map.canSpawnMonsters
+    }
 
     override fun isDisplayedOnMap(subArea: DofusSubArea): Boolean = validSubAreaIds.contains(subArea.id)
 
-    override fun getPriorityMap(maps: List<DofusMap>): DofusMap? = maps.minByOrNull { it.subArea.mapIds.size }
+    override fun getPriorityMap(maps: List<DofusMap>): DofusMap? = maps.minByOrNull { it.subArea?.mapIds?.size ?: -1 }
 
 }
 

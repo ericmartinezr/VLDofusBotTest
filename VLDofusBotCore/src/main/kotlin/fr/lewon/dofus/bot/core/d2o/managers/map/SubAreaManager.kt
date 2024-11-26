@@ -22,10 +22,14 @@ object SubAreaManager : VldbManager {
             val name = I18NUtil.getLabel(nameId) ?: "UNKNOWN_SUB_AREA_NAME"
             val areaId = it["areaId"].toString().toDouble()
             val area = AreaManager.getArea(areaId)
-            val monsterIds = it["monsters"] as List<Double>
+            var monsterIds = it["monsters"] as List<Double>
             val mapIds = it["mapIds"] as List<Double>
             val customWorldMap = it["customWorldMap"] as List<Int>
+
+            // Remove the monsterId from monsterIds if it doesn't exist on getMonstersId
+            monsterIds = monsterIds.filter { monsterId -> MonsterManager.getMonstersId().contains(monsterId) }
             val monsters = monsterIds.map { monsterId -> MonsterManager.getMonster(monsterId) }
+
             val psiAllowed = it["psiAllowed"].toString().toBoolean()
             val displayOnWorldMap = it["displayOnWorldMap"].toString().toBoolean()
             val level = it["level"].toString().toInt()
@@ -46,8 +50,8 @@ object SubAreaManager : VldbManager {
         return ArrayList(subAreaById.values)
     }
 
-    fun getSubArea(subAreaId: Double): DofusSubArea {
-        return subAreaById[subAreaId] ?: error("No sub area for id : $subAreaId")
+    fun getSubArea(subAreaId: Double): DofusSubArea? {
+        return subAreaById[subAreaId] //error("No sub area for id : $subAreaId")
     }
 
 }

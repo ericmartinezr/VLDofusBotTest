@@ -2,7 +2,7 @@ package fr.lewon.dofus.bot.core.model.maps
 
 
 data class DofusMap(
-    val subArea: DofusSubArea,
+    val subArea: DofusSubArea?,
     val worldMap: DofusWorldMap?,
     val id: Double,
     val posX: Int,

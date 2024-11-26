@@ -1,4 +1,4 @@
-package fr.lewon.dofus.bot.gui.main.exploration.map.helper
+package fr.lewon.dofus .bot.gui.main.exploration.map.helper
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.toPainter
@@ -46,7 +46,7 @@ private fun buildOverlay(): BufferedImage {
 }
 
 fun DofusMap.isInOverlay(): Boolean =
-    worldMap?.id == 1 && (subArea.capturable || subArea.displayOnWorldMap)
+    worldMap?.id == 1 && ((subArea?.capturable == true || subArea?.displayOnWorldMap == true))
 
 fun buildOverlayImage(drawCell: (graphics2D: Graphics2D, x: Int, y: Int) -> Unit): BufferedImage =
     BufferedImage((totalWidth * MAX_ZOOM).toInt(), (totalHeight * MAX_ZOOM).toInt(), BufferedImage.TYPE_INT_ARGB).also {

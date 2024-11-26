@@ -11,7 +11,7 @@ object TravelUtil {
     fun getAllZaapMaps(): List<DofusMap> {
         return HintManager.getHints(HintManager.HintType.ZAAP)
             .map { it.map }
-            .filter { !it.subArea.isConquestVillage }
+            .filter { !it.subArea?.isConquestVillage!! }
     }
 
     fun getPath(gameInfo: GameInfo, destMap: DofusMap): List<Transition>? {

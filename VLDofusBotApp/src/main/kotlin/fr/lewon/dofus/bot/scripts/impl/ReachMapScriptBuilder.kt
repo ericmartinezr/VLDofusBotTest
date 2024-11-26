@@ -24,11 +24,11 @@ object ReachMapScriptBuilder : DofusBotScriptBuilder("Reach map") {
     private val DEFAULT_WORLD_MAP_LABEL = WorldMapManager.getWorldMap(1)?.name
         ?: error("Default world map not found")
     private val MAP_ID_BY_DUNGEON = HintManager.getHints(HintManager.HintType.DUNGEON).associate {
-        "${it.name} (${it.map.subArea.level})" to it.map
+        "${it.name} (${it.map.subArea?.level})" to it.map
     }
     private val REACH_MAP_TYPE_LABELS = ReachMapType.values().map { it.label }
     private val DUNGEON_LABELS = MAP_ID_BY_DUNGEON.entries.sortedWith(
-        compareBy({ it.value.subArea.level }, { it.key })
+        compareBy({ it.value.subArea?.level }, { it.key })
     ).map { it.key }
 
     val reachMapTypeParameter = DofusBotParameter(

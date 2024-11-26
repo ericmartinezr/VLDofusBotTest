@@ -53,8 +53,11 @@ object ExploreAllZaapsScriptBuilder : DofusBotScriptBuilder("Explore all zaaps")
     }
 
     private fun shouldExploreZaap(gameInfo: GameInfo, it: DofusMap, registeredZaaps: List<DofusMap>): Boolean {
+        if (it.subArea == null) {
+            return false
+        }
         return !registeredZaaps.contains(it)
-                && it.subArea.area.superAreaId == gameInfo.currentMap.subArea.area.superAreaId
+                && it.subArea!!.area.superAreaId == gameInfo.currentMap.subArea!!.area.superAreaId
                 && TravelUtil.getPath(gameInfo, it) != null
                 && TravelUtil.getReversePath(gameInfo, it) != null
     }

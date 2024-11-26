@@ -60,4 +60,7 @@ object MonsterManager : VldbManager {
         return monsterById[monsterId] ?: error("No monster for id : $monsterId")
     }
 
+    fun getMonstersId(): List<Double> {
+        return monsterById.map { monster -> monster.value.id }
+    }
 }

@@ -53,7 +53,7 @@ abstract class WorldMapHelper {
         val y = map.posY - ExplorationUIUtil.minPosY
         return MapDrawCell(
             mapId = map.id,
-            subAreaId = map.subArea.id,
+            subAreaId = map.subArea?.id ?: -1.0,
             x = map.posX,
             y = map.posY,
             topLeft = Offset(x * ExplorationUIUtil.CELL_SIZE, y * ExplorationUIUtil.CELL_SIZE),
@@ -69,7 +69,9 @@ abstract class WorldMapHelper {
 
     fun getPriorityMapDrawCell(x: Int, y: Int): MapDrawCell? {
         val maps = MapManager.getDofusMaps(x, y).filter(this::isMapValid)
-        val mapId = maps.firstOrNull { it.subArea.id == ExplorationUIUtil.mapUIState.value.selectedSubAreaId }?.id
+        val mapId = maps.firstOrNull {
+            (it.subArea?.id ?: it.subArea?.id) == ExplorationUIUtil.mapUIState.value.selectedSubAreaId
+        }?.id
             ?: getPriorityMap(maps.filter { displayedSubAreas.contains(it.subArea) })?.id
         return mapDrawCellByMapId[mapId]
     }

@@ -41,19 +41,7 @@ object D2OUtil {
             for (i in 0 until count) {
                 val classDef = classes[stream.readInt()] ?: error("Failed to load class definitions")
                 val classDefRead = classDef.read(moduleName, stream)
-                if (moduleName == "SubAreas") {
-                    System.out.println("classDef")
-                    System.out.println(classDefRead)
-                }
                 objects.add(classDefRead)
-            }
-            if (moduleName == "SubAreas") {
-                System.out.println("Strea")
-                System.out.println(stream)
-                System.out.println("streamStartIndex")
-                System.out.println(streamStartIndex)
-                        System.out.println("count")
-                        System.out.println(count)
             }
             objects
         }

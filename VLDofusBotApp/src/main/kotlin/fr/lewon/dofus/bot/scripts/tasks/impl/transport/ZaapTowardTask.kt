@@ -92,7 +92,7 @@ class ZaapTowardTask(private val zaap: DofusMap) : BooleanDofusBotTask() {
     private fun getOrderedZaapDestinations(zaapDestinations: List<DofusMap>): List<DofusMap> {
         val favoriteZaaps = TransportSortingUtil.getFavoriteZaapMapIds().map { it.toInt() }
         val favoriteIndexFunc: (DofusMap) -> String = { if (favoriteZaaps.contains(it.id.toInt())) "A" else "B" }
-        return zaapDestinations.sortedBy { StringUtil.removeAccents(favoriteIndexFunc(it) + it.subArea.area.name + it.subArea.name) }
+        return zaapDestinations.sortedBy { StringUtil.removeAccents(favoriteIndexFunc(it) + it.subArea?.area?.name + (it.subArea?.name)) }
     }
 
     override fun onStarted(): String = "Zapping toward [${zaap.coordinates.x}, ${zaap.coordinates.y}] ..."
