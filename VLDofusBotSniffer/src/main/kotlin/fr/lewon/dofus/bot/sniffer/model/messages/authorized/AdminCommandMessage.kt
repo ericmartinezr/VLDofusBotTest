@@ -12,5 +12,5 @@ open class AdminCommandMessage : NetworkMessage() {
 		super.deserialize(stream)
 		content = stream.readUTF()
 	}
-	override fun getNetworkMessageId(): Int = 5816
+	override fun getNetworkMessageId(): Int = 9773
 }

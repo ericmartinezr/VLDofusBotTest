@@ -14,7 +14,7 @@ object I18NUtil {
         indexes = HashMap()
         textIndexes = HashMap()
         val dataDirPath = "${VldbFilesUtil.getDofusDirectory()}/data/"
-        val d2iFile = File("$dataDirPath/i18n/i18n_fr.d2i")
+        val d2iFile = File("$dataDirPath/i18n/i18n_es.d2i")
         d2iStream = ByteArrayReader(d2iFile.readBytes())
         initIndexes()
     }

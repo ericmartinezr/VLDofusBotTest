@@ -15,5 +15,5 @@ open class TrustStatusMessage : NetworkMessage() {
 		trusted = BooleanByteWrapper.getFlag(_box0, 0)
 		certified = BooleanByteWrapper.getFlag(_box0, 1)
 	}
-	override fun getNetworkMessageId(): Int = 2199
+	override fun getNetworkMessageId(): Int = 3339
 }

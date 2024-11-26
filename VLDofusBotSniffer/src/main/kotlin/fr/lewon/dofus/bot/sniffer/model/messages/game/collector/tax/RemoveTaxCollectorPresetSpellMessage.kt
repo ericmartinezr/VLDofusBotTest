@@ -16,5 +16,5 @@ open class RemoveTaxCollectorPresetSpellMessage : NetworkMessage() {
 		presetId.deserialize(stream)
 		slot = stream.readUnsignedByte().toInt()
 	}
-	override fun getNetworkMessageId(): Int = 8654
+	override fun getNetworkMessageId(): Int = 5781
 }

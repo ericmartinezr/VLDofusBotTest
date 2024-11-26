@@ -18,5 +18,5 @@ open class AddTaxCollectorPresetSpellMessage : NetworkMessage() {
 		spell = TaxCollectorOrderedSpell()
 		spell.deserialize(stream)
 	}
-	override fun getNetworkMessageId(): Int = 4511
+	override fun getNetworkMessageId(): Int = 6564
 }

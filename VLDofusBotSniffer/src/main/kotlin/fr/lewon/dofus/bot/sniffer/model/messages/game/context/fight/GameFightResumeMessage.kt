@@ -26,5 +26,5 @@ open class GameFightResumeMessage : GameFightSpectateMessage() {
 		summonCount = stream.readUnsignedByte().toInt()
 		bombCount = stream.readUnsignedByte().toInt()
 	}
-	override fun getNetworkMessageId(): Int = 920
+	override fun getNetworkMessageId(): Int = 2675
 }

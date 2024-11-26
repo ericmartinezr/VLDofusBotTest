@@ -18,5 +18,5 @@ open class GameFightStartMessage : NetworkMessage() {
 			idols.add(item)
 		}
 	}
-	override fun getNetworkMessageId(): Int = 4014
+	override fun getNetworkMessageId(): Int = 9783
 }
